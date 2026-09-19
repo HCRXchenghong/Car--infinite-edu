@@ -1,0 +1,45 @@
+{
+  "status": "WORKBOOK_EXPORTED_NOT_HARDWARE_VALIDATION",
+  "pages": 40,
+  "sections": [
+    {
+      "title": "VCU MCU 全部实体脚",
+      "rows": 128
+    },
+    {
+      "title": "BCM MCU 全部实体脚",
+      "rows": 100
+    },
+    {
+      "title": "VCU 核心芯片逐焊盘连接（完整实例）",
+      "rows": 216
+    },
+    {
+      "title": "BCM 核心芯片逐焊盘连接（完整实例）",
+      "rows": 94
+    },
+    {
+      "title": "VCU 参考外围器件两端连接",
+      "rows": 86
+    },
+    {
+      "title": "BCM 参考外围器件两端连接",
+      "rows": 56
+    },
+    {
+      "title": "MCU 到关键芯片的对端检查",
+      "rows": 24
+    },
+    {
+      "title": "BCM 35P 逻辑接口——非厂家腔号",
+      "rows": 35
+    },
+    {
+      "title": "26 项试验记录（填写实测，不自动合格）",
+      "rows": 26
+    }
+  ],
+  "file": "逐焊盘与外围连接_完整作业册_HW-R1.pdf",
+  "bytes": 322287,
+  "sha256": "202f14de8b77b0a9e942d9c8b3abc56c52b5fbd5ecf2391278a4d51037c78d0a"
+}

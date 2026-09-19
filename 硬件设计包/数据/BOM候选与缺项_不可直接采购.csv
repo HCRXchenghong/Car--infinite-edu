@@ -1,0 +1,45 @@
+﻿板,位号/组,数量,候选规格,用途,证据/状态
+VCU,U101,1,STM32G474QET6 / LQFP128,主控,GPIO 脚位 V；电气 H
+VCU,U201～U203,3,TPSM53603RDAR / B3QFN RDA-15,Buck 三组,S03 型号/脚位 V；热/时序 H
+VCU,CIN_10U 每单元2只,6,GRM32ER71H106KA12L，10µF/50V,Buck 输入,S03 推荐；偏压/供货 H
+VCU,COUT_47U 每单元2只,6,GRM32ER71A476KE15L，47µF/10V,Buck 输出,S03 推荐；偏压有效容量 H
+VCU,RFB_TOP 每单元1只,3,10.0k/0.1%,Buck 上反馈,D
+VCU,RFB_BOTTOM,3,VCU:2.49k×2+4.32k；BCM:2.49k/4.32k/3.32k,Buck 下反馈,D；按板区别
+VCU,U301～U303,3,TCAN1044AVDRQ1 / SOIC-8 D,CAN 物理层,S04 型号/脚位 V；供货/系统 H
+VCU,CAN_TERM,3,120Ω/1%/0.5W，默认 DNP,总线终端,按两端拓扑装配
+VCU,CAN_TVS,3,CAN 专用双线保护，MPN 待定,接口瞬态,H：耐压/电容/能量
+VCU,F_MAIN/反接/输入TVS,按保护设计,型号未冻结,输入保护,H：DCDC/线束/负载
+VCU,HSE/负载电容,1组,晶体频率/CL/ESR 待定,主时钟,H：精度/起振
+VCU,SUP/WD/LATCH,1组,监督器/看门狗/复位主导锁存,硬件许可,H：实体脚号与失效状态
+BCM,U101,1,STM32G491VET6 / LQFP100,主控,GPIO 脚位 V；电气 H
+BCM,U201～U203,3,TPSM53603RDAR / B3QFN RDA-15,Buck 三组,S03 型号/脚位 V；热/时序 H
+BCM,CIN_10U 每单元2只,6,GRM32ER71H106KA12L，10µF/50V,Buck 输入,S03 推荐；偏压/供货 H
+BCM,COUT_47U 每单元2只,6,GRM32ER71A476KE15L，47µF/10V,Buck 输出,S03 推荐；偏压有效容量 H
+BCM,RFB_TOP 每单元1只,3,10.0k/0.1%,Buck 上反馈,D
+BCM,RFB_BOTTOM,3,VCU:2.49k×2+4.32k；BCM:2.49k/4.32k/3.32k,Buck 下反馈,D；按板区别
+BCM,U301～U302,2,TCAN1044AVDRQ1 / SOIC-8 D,CAN 物理层,S04 型号/脚位 V；供货/系统 H
+BCM,CAN_TERM,2,120Ω/1%/0.5W，默认 DNP,总线终端,按两端拓扑装配
+BCM,CAN_TVS,2,CAN 专用双线保护，MPN 待定,接口瞬态,H：耐压/电容/能量
+BCM,F_MAIN/反接/输入TVS,按保护设计,型号未冻结,输入保护,H：DCDC/线束/负载
+BCM,HSE/负载电容,1组,晶体频率/CL/ESR 待定,主时钟,H：精度/起振
+BCM,SUP/WD/LATCH,1组,监督器/看门狗/复位主导锁存,硬件许可,H：实体脚号与失效状态
+VCU,U401～U403,3,MAX14830ETM+ / TQFN48+EP,12 UART,S01 型号/脚位 V；供货 H
+VCU,MAX去耦,9,100nF（VL/VEXT/VA 各一）,近脚去耦,每芯片 3 只，不含储能
+VCU,MAX_V18_C,3,1µF，靠 V18,内部 LDO 输出,S01 V
+VCU,MAX晶体,3,1.8432MHz；CL/ESR 待定,每芯片独立时钟,频率 D；具体晶体 H
+VCU,U501,1,带 U.FL 的 nRF52840 模块,无线,H：具体型号/脚位
+VCU,U710～U721,12,带限流/关断/故障的 5V 支路器件,端口保护,H：具体型号/限流值
+VCU,外部UART物理层,13,12传感器+BMS，TTL转换/差分/隔离按设备,电平/保护,H：实际设备规格
+BCM,K1～K8,8,12V 线圈、经 DC 负载核验的继电器,输出,H：线圈/触点/封装
+BCM,Q901～Q908,8,VGS=3.3V 有保证的 N-MOS,继电器线圈低边,H：MPN/脚位/功耗
+BCM,D901～D908,8,线圈续流二极管或经验证钳位网络,线圈保护,H：电流/释放时间
+BCM,F_K1～F_K8,8,各负载独立 DC 保护,触点前端保护,H：曲线/额定/分断
+BCM,U401,1,MC33926PNBR2 / PQFN32+EP，8×8mm,推杆 H 桥,S02 型号/脚位 V；生命周期/热 H
+BCM,CCP,1,33nF/50V 陶瓷,CCP 到 VPWR,S02 V
+BCM,R_FB,1,150Ω/1%/0.25W,电流反馈,D；范围与 ADC 保护验证
+BCM,R_SF,1,15k,SF 上拉到 3V3,D；低于 0.3mA
+BCM,U701,1,带诊断感性负载智能高边,锁,H：完整型号/脚位
+BCM,U501,1,EG800Z-GL 完整变体待确认,4G,H：硬件手册/脚位
+BCM,U601/U602,2,SHT31 具体封装变体待确认,温湿度,H：器件手册/脚位
+BCM,J_BCM_EXT,1,K776280WV-35-PTSNB 候选,35P 接口,H：厂家受控图纸/配套端子
+两板,其余电阻/电容/缓冲/接口/连接器,依最终 CAD 统计,本表未构成完整贴片物料清单,采购前补齐,H：不得以候选表直接下单

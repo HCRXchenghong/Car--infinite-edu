@@ -1,0 +1,7 @@
+﻿ID,文件,名称,来源URL,SHA256,说明
+S01,MAX14830.pdf,Analog Devices / MAX14830 数据手册,https://www.analog.com/media/en/technical-documentation/data-sheets/MAX14830.pdf,c05f2499bd5bf975f1b21893e46f6e86d43e6285569b5815c16ed01046cbde93,厂家原始 PDF
+S02,MC33926.pdf,Freescale / MC33926 Rev.10.0，2014-08,https://www.pololu.com/file/0J233/MC33926.pdf,57dfd6b3fb4fdb3ff8a235b6c1ff6196c8ac23d71ea9478127f0ee5cb0c672c2,Pololu 镜像的厂家 PDF；PNB/PQFN32；当前生命周期未核验
+S03,TPSM53603.pdf,TI / SNVSB77B，2021-09 修订,https://www.ti.com/lit/ds/symlink/tpsm53603.pdf,9a61134eb67f36b82310b5c56746d9a004baaf51966168e84d920a302254fa5d,厂家 PDF
+S04,TCAN1044A-Q1.pdf,TI / SLLSFJ3D，2024-10 修订,https://www.ti.com/lit/ds/symlink/tcan1044a-q1.pdf,772463ba2db13b7d56722516300abe846c982aeb315b8e3726e60df13de306e1,含 AV 变体；厂家 PDF
+S05,STM32G474Q_B-C-E_Tx.xml,ST 官方 MCU 引脚数据库 G474Q,https://api.github.com/repos/STMicroelectronics/STM32_open_pin_data/contents/mcu/STM32G474Q(B-C-E)Tx.xml?ref=master,ef1859d9450021f8c54aec9c00e8650816a4a0426cf351b0ff1fa76a1aa25a77,blob d9c52b4725451407ec54c877732ffd71bde67cee；不是电气数据手册
+S06,STM32G491V_C-E_Tx.xml,ST 官方 MCU 引脚数据库 G491V,https://api.github.com/repos/STMicroelectronics/STM32_open_pin_data/contents/mcu/STM32G491V(C-E)Tx.xml?ref=master,f8480c7baa618dfe83c46e1b614c4d1f634faaad7139f9fc522a37494fc85813,blob a04f9a00c77e25860360e857e4470f1ec9209114；不是电气数据手册

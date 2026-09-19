@@ -1,0 +1,10 @@
+{
+  "status": "KNOWN_CORE_PAD_LEDGER_CHECKED_NOT_CAD",
+  "core_devices": 15,
+  "core_pads_including_ep": 310,
+  "mcu_pads": 228,
+  "combined_record_count": 538,
+  "peripheral_reference_rows": 142,
+  "point_to_point_rows": 24,
+  "unverified": "保护/安全器件、模块、物理腔号及真实 CAD 仍未完成"
+}

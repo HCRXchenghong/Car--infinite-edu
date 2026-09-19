@@ -1,0 +1,27 @@
+.DS_Store
+Thumbs.db
+
+# Firmware build outputs
+build/
+dist/
+out/
+Debug/
+Release/
+*.elf
+*.hex
+*.bin
+*.map
+*.lst
+*.o
+*.d
+
+# EDA generated and local cache files
+*.bak
+*.bck
+*.tmp
+~*
+
+# Editor settings
+.vscode/
+.idea/
+

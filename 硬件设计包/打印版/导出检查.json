@@ -1,0 +1,45 @@
+{
+  "status": "EXPORT_CONTENT_CHECK_PASSED_NOT_HARDWARE_VALIDATION",
+  "pages": 54,
+  "source_files": [
+    "00_使用说明与放行边界.md",
+    "01_系统电源与安全接线.md",
+    "02_通用原理图电路.md",
+    "03_VCU逐页设计.md",
+    "04_BCM逐页设计.md",
+    "05_连接器线束与装配.md",
+    "06_电源保护与热设计计算.md",
+    "07_PCB与制造要求.md",
+    "08_检验步骤与记录.md",
+    "09_待确认输入与资料.md",
+    "10_数据附录.md",
+    "11_逐网连接勾选清单.md"
+  ],
+  "tables": 42,
+  "required_terms_checked": [
+    "MAX14830",
+    "MC33926",
+    "TPSM53603",
+    "TCAN1044AV",
+    "128",
+    "100",
+    "35P",
+    "T26",
+    "H16",
+    "SHA256",
+    "HOLD_VERIFY_REF"
+  ],
+  "artifacts": [
+    {
+      "file": "四轮四转底盘_硬件实施与检验手册_HW-R1.pdf",
+      "bytes": 633559,
+      "sha256": "94933c8ba3af89b252c0c20d000b3363a346d11e6dfb3acd52373fe1c97b96d7"
+    },
+    {
+      "file": "四轮四转底盘_硬件实施与检验手册_HW-R1.docx",
+      "bytes": 106544,
+      "sha256": "e1d95f857a3d8465e27235993441b546f797df2cc0adc58b92b122a8603294f9"
+    }
+  ],
+  "visual_review": "Required: rendered-page review is separate from text/content checks."
+}

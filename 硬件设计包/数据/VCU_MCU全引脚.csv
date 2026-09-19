@@ -1,0 +1,129 @@
+﻿实体脚,引脚名,网络名,功能/方向,外部默认/处理,备注
+1,PE2,MAX_CS_A,输出,10k 上拉,D 分配；复用信号已核验
+2,PE3,MAX_CS_B,输出,10k 上拉,D 分配；复用信号已核验
+3,PE4,MAX_CS_C,输出,10k 上拉,D 分配；复用信号已核验
+4,PE5,MAX_RST_A,输出,10k 下拉，低复位,D 分配；复用信号已核验
+5,PE6,MAX_RST_B,输出,10k 下拉，低复位,D 分配；复用信号已核验
+6,VBAT,3V3_LOGIC,备份域电源,100nF,无后备电池基线
+7,PC13,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+8,PC14-OSC32_IN,LSE_DNP,可选 RTC,不用时 NC,无默认 32k 晶体
+9,PC15-OSC32_OUT,LSE_DNP,可选 RTC,不用时 NC,无默认 32k 晶体
+10,PF3,STEER_SAFE_FEEDBACK,输入,调理后，断线安全,轮询；外部电平 H
+11,PF4,STEER_PERMIT_REQ,输出,外部门控，禁能优先,真实驱动器电平 H
+12,VSS,GND,地,低阻回流,V 脚位
+13,VDD,3V3_LOGIC,供电,100nF/脚,V 脚位；D 去耦
+14,PF5,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+15,PF7,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+16,PF8,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+17,PF9,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+18,PF10,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+19,PF0-OSC_IN,HSE_IN,主时钟,晶体/CL/ESR 待选,H：CAN 时钟精度
+20,PF1-OSC_OUT,HSE_OUT,主时钟,晶体/CL/ESR 待选,H：CAN 时钟精度
+21,PG10-NRST,NRST,复位,10k 上拉+100nF,监督开漏；保留复位功能
+22,PC0,VIN_ADC,ADC1_IN6,分压/滤波/限幅,ADC 电气 H
+23,PC1,SENSOR5V_ADC,ADC1_IN7,分压/滤波/限幅,ADC 电气 H
+24,PC2,LOGIC3V3_ADC,ADC1_IN8,分压/滤波/限幅,ADC 电气 H
+25,PC3,ESTOP_OK,输入/EXTI3,断线为无效,调理后；独立硬件通路
+26,PF2,MAX_RST_C,输出,10k 下拉，低复位,D 分配；复用信号已核验
+27,PA0,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+28,PA1,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+29,PA2,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+30,VSS,GND,地,低阻回流,V 脚位
+31,VDD,3V3_LOGIC,供电,100nF/脚,V 脚位；D 去耦
+32,PA3,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+33,PA4,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+34,PA5,MAX_SCK,SPI1_SCK,总线初始空闲；CS 高,D 分配；复用信号已核验
+35,PA6,MAX_MISO,SPI1_MISO,总线初始空闲；CS 高,D 分配；复用信号已核验
+36,PA7,MAX_MOSI,SPI1_MOSI,总线初始空闲；CS 高,D 分配；复用信号已核验
+37,PC4,RF_IRQ,输入/EXTI4,按模块偏置 H,D 分配；复用信号已核验
+38,PC5,RF_RESET,开漏请求,按模块复位 H,D 分配；复用信号已核验
+39,PB0,SENS_EN_A,输出,10k 下拉，输出关闭,D 分配；复用信号已核验
+40,PB1,SENS_EN_B,输出,10k 下拉，输出关闭,D 分配；复用信号已核验
+41,PB2,SENS_EN_C,输出,10k 下拉，输出关闭,D 分配；复用信号已核验
+42,VSSA,GND,地,低阻回流,V 脚位
+43,VREF+,HOLD_VERIFY_REF,禁止冻结,不根据 XML 猜接法,H：43/44 实体定义须查数据手册
+44,VREF_+,HOLD_VERIFY_REF,禁止冻结,不根据 XML 猜接法,H：43/44 实体定义须查数据手册
+45,VDDA,VDDA_3V3,模拟供电,100nF+1µF,D；时序 H
+46,VSS,GND,地,低阻回流,V 脚位
+47,VDD,3V3_LOGIC,供电,100nF/脚,V 脚位；D 去耦
+48,PF11,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+49,PF12,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+50,PF13,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+51,PF14,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+52,PF15,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+53,PE7,MAX_IRQ_A,输入/EXTI7,10k 上拉,开漏低有效
+54,PE8,MAX_IRQ_B,输入/EXTI8,10k 上拉,开漏低有效
+55,PE9,MAX_IRQ_C,输入/EXTI9,10k 上拉,开漏低有效
+56,PE10,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+57,PE11,RF_CS,输出,10k 上拉,具体模块 H
+58,PE12,RF_SCK,SPI4_SCK,模块接口 H,D 分配；复用信号已核验
+59,PE13,RF_MISO,SPI4_MISO,模块接口 H,D 分配；复用信号已核验
+60,PE14,RF_MOSI,SPI4_MOSI,模块接口 H,D 分配；复用信号已核验
+61,PE15,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+62,PB10,CAN3_STB,输出,10k 上拉，待机,D 分配；复用信号已核验
+63,VSS,GND,地,低阻回流,V 脚位
+64,VDD,3V3_LOGIC,供电,100nF/脚,V 脚位；D 去耦
+65,PB11,LED_STATUS,输出,串阻 LED，默认灭,D 分配；复用信号已核验
+66,PB12,CAN2_RX,FDCAN2_RX,TX 10k 上拉；RX 由收发器驱动,D 分配；复用信号已核验
+67,PB13,CAN2_TX,FDCAN2_TX,TX 10k 上拉；RX 由收发器驱动,D 分配；复用信号已核验
+68,PB14,SENS_FAULT_A,输入,上拉，开漏线与条件核验,轮询
+69,PB15,SENS_FAULT_B,输入,上拉，开漏线与条件核验,轮询
+70,PD8,DRIVE_A_FAULT,输入,调理后，断线安全,轮询；外部电平 H
+71,PD9,DRIVE_A_READY,输入,调理后，断线安全,轮询；外部电平 H
+72,PD10,DRIVE_A_RESET_REQ,输出,外部门控，禁能优先,真实驱动器电平 H
+73,PD11,DRIVE_B_FAULT,输入,调理后，断线安全,轮询；外部电平 H
+74,PD12,DRIVE_B_READY,输入,调理后，断线安全,轮询；外部电平 H
+75,PD13,DRIVE_B_RESET_REQ,输出,外部门控，禁能优先,真实驱动器电平 H
+76,PD14,DRIVE_A_ENABLE_REQ,输出,外部门控，禁能优先,真实驱动器电平 H
+77,PD15,DRIVE_B_ENABLE_REQ,输出,外部门控，禁能优先,真实驱动器电平 H
+78,VSS,GND,地,低阻回流,V 脚位
+79,VDD,3V3_LOGIC,供电,100nF/脚,V 脚位；D 去耦
+80,PC6,WD_HEARTBEAT,输出,下拉；停止翻转视为故障,D 分配；复用信号已核验
+81,PC7,ARM_REQ,输出,10k 下拉；新边沿武装,D 分配；复用信号已核验
+82,PG0,DRIVE_A_STOP_REQ,输出,外部门控，禁能优先,真实驱动器电平 H
+83,PG1,DRIVE_B_STOP_REQ,输出,外部门控，禁能优先,真实驱动器电平 H
+84,PG2,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+85,PG3,REARM_SENSE,输入,调理后，断线安全,轮询；外部电平 H
+86,PG4,POWER_HEALTH,输入,调理后，断线安全,轮询；外部电平 H
+87,PC8,HW_PERMIT_SENSE,输入,低为禁止,轮询，不占 EXTI8
+88,PC9,SENS_FAULT_C,输入,上拉，开漏线与条件核验,轮询
+89,PA8,CAN3_RX,FDCAN3_RX,收发器驱动,D 分配；复用信号已核验
+90,PA9,CAN1_STB,输出,10k 上拉，待机,D 分配；复用信号已核验
+91,PA10,CAN2_STB,输出,10k 上拉，待机,D 分配；复用信号已核验
+92,PA11,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+93,PA12,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+94,VSS,GND,地,低阻回流,V 脚位
+95,VDD,3V3_LOGIC,供电,100nF/脚,V 脚位；D 去耦
+96,PA13,SWDIO,SYS_JTMS-SWDIO,保留调试,VTREF 仅采样
+97,PF6,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+98,PA14,SWCLK,SYS_JTCK-SWCLK,保留调试,D 分配；复用信号已核验
+99,PA15,CAN3_TX,FDCAN3_TX,10k 上拉,禁用完整 JTAG，保留 SWD
+100,PC10,DEBUG_TX,UART4_TX,仅壳内测试,D 分配；复用信号已核验
+101,PC11,DEBUG_RX,UART4_RX,10k 上拉,D 分配；复用信号已核验
+102,PC12,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+103,PG5,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+104,PG6,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+105,PG7,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+106,PG8,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+107,PG9,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+108,PD0,CAN1_RX,FDCAN1_RX,TX 10k 上拉；RX 由收发器驱动,D 分配；复用信号已核验
+109,PD1,CAN1_TX,FDCAN1_TX,TX 10k 上拉；RX 由收发器驱动,D 分配；复用信号已核验
+110,VSS,GND,地,低阻回流,V 脚位
+111,VDD,3V3_LOGIC,供电,100nF/脚,V 脚位；D 去耦
+112,PD2,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+113,PD3,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+114,PD4,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+115,PD5,BMS_TX,USART2_TX,经匹配物理层,BMS 电平/隔离 H
+116,PD6,BMS_RX,USART2_RX,经匹配物理层,BMS 电平/隔离 H
+117,PD7,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+118,PB3,SWO,SYS_JTDO-SWO,可选测试点,D 分配；复用信号已核验
+119,PB4,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+120,PB5,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+121,PB6,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+122,PB7,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+123,PB8-BOOT0,BOOT0,启动,10k 下拉,启动选项 H
+124,PB9,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+125,PE0,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+126,PE1,NC_RESERVED,未用 GPIO,NC，初始化模拟态,不外接，不临时挪用
+127,VSS,GND,地,低阻回流,V 脚位
+128,VDD,3V3_LOGIC,供电,100nF/脚,V 脚位；D 去耦

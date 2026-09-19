@@ -1,0 +1,19 @@
+{
+  "status": "DOCUMENT_DATA_CHECKS_PASSED_NOT_HARDWARE_VALIDATION",
+  "checks": [
+    "VCU: 128 个唯一实体脚完整；62 个 GPIO 分配的功能存在；5 条 EXTI 无冲突；3 路 FDCAN 实例确认。",
+    "BCM: 100 个唯一实体脚完整；54 个 GPIO 分配的功能存在；6 条 EXTI 无冲突；2 路 FDCAN 实例确认。",
+    "BCM: 35 个逻辑槽位唯一且总数为 35；所有厂家物理腔号明确未确认。",
+    "VCU: 12 个 UART 设备和 12 个独立端口保护位号唯一，三片 MAX 各使用 4 路。"
+  ],
+  "open_items": [
+    "MCU 电气手册与 G474 43/44 脚",
+    "GPIO AF 数字/时钟/启动",
+    "实际 CAD ERC/DRC",
+    "连接器厂家腔号",
+    "外部负载型号及功率",
+    "安全电路器件和八轴安全路径",
+    "4G/无线/传感器/保护完整型号",
+    "实物测试全部未执行"
+  ]
+}
