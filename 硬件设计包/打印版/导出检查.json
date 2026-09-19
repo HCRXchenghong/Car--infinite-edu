@@ -1,6 +1,6 @@
 {
   "status": "EXPORT_CONTENT_CHECK_PASSED_NOT_HARDWARE_VALIDATION",
-  "pages": 54,
+  "pages": 57,
   "source_files": [
     "00_使用说明与放行边界.md",
     "01_系统电源与安全接线.md",
@@ -21,6 +21,9 @@
     "MC33926",
     "TPSM53603",
     "TCAN1044AV",
+    "MSSD-100EMA",
+    "非 CANopen",
+    "SM60E",
     "128",
     "100",
     "35P",
@@ -32,13 +35,13 @@
   "artifacts": [
     {
       "file": "四轮四转底盘_硬件实施与检验手册_HW-R1.pdf",
-      "bytes": 633559,
-      "sha256": "94933c8ba3af89b252c0c20d000b3363a346d11e6dfb3acd52373fe1c97b96d7"
+      "bytes": 653481,
+      "sha256": "4f76f37c3b01c7f2ea4955fde5a89d9d33b7c9278c8857f9686cc4175742f961"
     },
     {
       "file": "四轮四转底盘_硬件实施与检验手册_HW-R1.docx",
-      "bytes": 106544,
-      "sha256": "e1d95f857a3d8465e27235993441b546f797df2cc0adc58b92b122a8603294f9"
+      "bytes": 111440,
+      "sha256": "d622500381464e96b58c2955612c1b1e1979460209998e280c235a88d8a3e7ae"
     }
   ],
   "visual_review": "Required: rendered-page review is separate from text/content checks."

@@ -24,7 +24,7 @@
 | BCM K1 上位机域 | 12V | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
 | BCM K2 风扇 | 12V | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
 | BCM K3～K8 | 12V | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
-| 电磁锁 | 12V | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
+| SM60E 电磁锁 DC12V 候选 | 12V | 0.092A 资料值 | 待测 | 待测 | 持续通电允许 | 常关/急停关 | 独立支路 | 板外 | 双白反馈电气/机械含义待测 |
 | 推杆 | 12V | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
 | EG800Z 电源输入侧 | 12V | TBD | TBD | TBD | TBD | 常电 | TBD | 板内 | TBD |
 | VCU 逻辑 | 12V | TBD | TBD | TBD | 100% | 常电 | TBD | 板内 | TBD |
@@ -51,7 +51,7 @@ Pinmap 放行时同时附上时钟树、DMA 通道表、中断优先级表和封
 |---|---|---|---:|---:|---|---|---|---|
 | CAN1_MAIN | 上位机/BCM/VCU | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
 | CAN2_STEER | VCU/4×转向轴 | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
-| CAN3_DRIVE | VCU/驱动器 A/B | TBD | TBD | TBD | 经典 CAN | TBD | TBD | TBD |
+| CAN3_DRIVE | VCU/MSSD A/B | 500kbps 默认，最终冻结 | 两台唯一 ID，默认均为 1 不可直接并联 | 厂家 SDO-like 寄存器协议 | 经典 CAN 2.0A，11 位标准帧，非 CANopen | 通信超时/外部停机待厂家定义 | 待定义 | S08 + 抓包 |
 
 ### 4.2 报文定义
 

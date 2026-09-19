@@ -158,7 +158,7 @@ for net,direction,peer,ret in [
  ('CAN2_H','双向','扩展 H','与 L 双绞'),('CAN2_L','双向','扩展 L','与 H 双绞'),('CAN2_REF','参考','扩展参考地','非负载回流'),
  ('BCM_TX','输出','对端 RX','电平 H'),('BCM_RX','输入','对端 TX','电平 H'),('UART_REF','参考','对端参考地','非负载回流'),
  ('WAKE_IN','输入','12V 唤醒请求','调理；与系统参考地同域'),('ESTOP_SENSE','检测','独立辅助 NC','ESTOP_RETURN'),('ESTOP_RETURN','检测回流','独立辅助 NC','不加载 VCU 主链'),
- ('LOCK_SENSE','检测','锁干接点','仅检测电流'),('LOCK_SENSE_RETURN','检测回流','锁干接点','非锁功率负线'),('RESERVED','不接','空腔堵头','禁止私接电源')]: slot(net,direction,peer,ret)
+ ('LOCK_SENSE','检测','SM60E 白线1','反馈电气 H；限流辨识'),('LOCK_SENSE_RETURN','检测回流','SM60E 白线2','非锁功率负线'),('RESERVED','不接','空腔堵头','禁止私接电源')]: slot(net,direction,peer,ret)
 assert len(conn)==35
 write_csv('BCM_35P逻辑分配_非厂家腔号.csv',['逻辑槽位','厂家腔号','网络','方向','对端','回流/注意'],conn)
 table('BCM 35P 逻辑分配——不可据此直接压接',['槽位','厂家腔号','网络','方向','对端','回流/注意'],conn)
@@ -195,6 +195,7 @@ part('VCU','MAX晶体',3,'1.8432MHz；CL/ESR 待定','每芯片独立时钟','�
 part('VCU','U501',1,'带 U.FL 的 nRF52840 模块','无线','H：具体型号/脚位')
 part('VCU','U710～U721',12,'带限流/关断/故障的 5V 支路器件','端口保护','H：具体型号/限流值')
 part('VCU','外部UART物理层',13,'12传感器+BMS，TTL转换/差分/隔离按设备','电平/保护','H：实际设备规格')
+part('VCU外部','DRIVE_A/DRIVE_B',2,'MSSD-100EMA_2EC_N','一拖二驱动控制器','S07 电气/尺寸；S08 为自定义经典 CAN，非 CANopen；端子/安全 H')
 part('BCM','K1～K8',8,'12V 线圈、经 DC 负载核验的继电器','输出','H：线圈/触点/封装')
 part('BCM','Q901～Q908',8,'VGS=3.3V 有保证的 N-MOS','继电器线圈低边','H：MPN/脚位/功耗')
 part('BCM','D901～D908',8,'线圈续流二极管或经验证钳位网络','线圈保护','H：电流/释放时间')
@@ -203,7 +204,8 @@ part('BCM','U401',1,'MC33926PNBR2 / PQFN32+EP，8×8mm','推杆 H 桥','S02 型�
 part('BCM','CCP',1,'33nF/50V 陶瓷','CCP 到 VPWR','S02 V')
 part('BCM','R_FB',1,'150Ω/1%/0.25W','电流反馈','D；范围与 ADC 保护验证')
 part('BCM','R_SF',1,'15k','SF 上拉到 3V3','D；低于 0.3mA')
-part('BCM','U701',1,'带诊断感性负载智能高边','锁','H：完整型号/脚位')
+part('BCM','U701',1,'带诊断/感性钳位的智能高边','SM60E 锁驱动','S09 负载候选 12V/92mA；高边 MPN/脚位 H')
+part('BCM外部','LOCK_EXT',1,'SM60E DC12V 版本候选','电磁锁','S09：红/黑功率、双白反馈；反馈电气/机械到位含义 H')
 part('BCM','U501',1,'EG800Z-GL 完整变体待确认','4G','H：硬件手册/脚位')
 part('BCM','U601/U602',2,'SHT31 具体封装变体待确认','温湿度','H：器件手册/脚位')
 part('BCM','J_BCM_EXT',1,'K776280WV-35-PTSNB 候选','35P 接口','H：厂家受控图纸/配套端子')
@@ -223,6 +225,9 @@ sources=[
  ('S04','TCAN1044A-Q1.pdf','TI / SLLSFJ3D，2024-10 修订','https://www.ti.com/lit/ds/symlink/tcan1044a-q1.pdf','含 AV 变体；厂家 PDF'),
  ('S05','STM32G474Q_B-C-E_Tx.xml','ST 官方 MCU 引脚数据库 G474Q','https://api.github.com/repos/STMicroelectronics/STM32_open_pin_data/contents/mcu/STM32G474Q(B-C-E)Tx.xml?ref=master','blob d9c52b4725451407ec54c877732ffd71bde67cee；不是电气数据手册'),
  ('S06','STM32G491V_C-E_Tx.xml','ST 官方 MCU 引脚数据库 G491V','https://api.github.com/repos/STMicroelectronics/STM32_open_pin_data/contents/mcu/STM32G491V(C-E)Tx.xml?ref=master','blob a04f9a00c77e25860360e857e4470f1ec9209114；不是电气数据手册'),
+ ('S07','MSSD-100EMA_2EC_N_彩页.pdf','MSEAG MSSD-100EMA_2EC_N 产品彩页','用户提供的商户资料原件','3 页图片型资料；核验输入/输出电流、功能、尺寸与接口分组，不含端子针号和安全手册'),
+ ('S08','MSSD-2EC_CAN协议_V1.0.pdf','MSSD-2EC 系列 CAN 通讯协议及寄存器说明书 V1.0','用户提供的商户资料原件','明确为 11 位标准帧的厂家自定义经典 CAN，暂不支持 CANopen；完整寄存器表仍依赖未取得的 RS485 手册'),
+ ('S09','SM60E规格书_20260611.pdf','SM60E 电磁锁规格书，图号 SHMi20260611SM60E','用户提供的商户资料原件','图片型机械图；核验 12V/24V 电气、60kg 标称最大吸力、红黑功率和双白反馈；反馈电气类型未定义'),
 ]
 manifest=[]
 APP.extend(['## 存档资料索引与 SHA256', '', '资料取得日期：2026-09-19。引用页码指原 PDF 印刷页码，不是本手册页码。下载成功不等于所有参数均已核验；证据范围见每章。', ''])
@@ -234,6 +239,6 @@ for sid,filename,title,url,note in sources:
     APP.extend([f'### {sid} {title}', '', f'本地文件：资料/{filename}', '', f'来源：{url}', '', f'范围：{note}', '', f'SHA256：{digest}', ''])
 write_csv('资料来源与SHA256.csv',['ID','文件','名称','来源URL','SHA256','说明'],manifest)
 (ROOT/'10_数据附录.md').write_text('\n'.join(APP)+'\n',encoding='utf-8')
-result={'status':'DOCUMENT_DATA_CHECKS_PASSED_NOT_HARDWARE_VALIDATION','checks':checks,'open_items':['MCU 电气手册与 G474 43/44 脚','GPIO AF 数字/时钟/启动','实际 CAD ERC/DRC','连接器厂家腔号','外部负载型号及功率','安全电路器件和八轴安全路径','4G/无线/传感器/保护完整型号','实物测试全部未执行']}
+result={'status':'DOCUMENT_DATA_CHECKS_PASSED_NOT_HARDWARE_VALIDATION','checks':checks,'open_items':['MCU 电气手册与 G474 43/44 脚','GPIO AF 数字/时钟/启动','实际 CAD ERC/DRC','连接器厂家腔号','MSSD 端子/RS485 完整寄存器表/安全输入','推杆完整型号与电流/机械参数','SM60E 反馈电气与机械到位含义','安全电路器件和八轴安全路径','4G/无线/传感器/保护完整型号','实物测试全部未执行']}
 (DATA/'校验结果.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print(json.dumps(result,ensure_ascii=False,indent=2))

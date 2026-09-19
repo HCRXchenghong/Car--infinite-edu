@@ -31,6 +31,6 @@ B29,H：厂家腔号未确认,UART_REF,参考,对端参考地,非负载回流
 B30,H：厂家腔号未确认,WAKE_IN,输入,12V 唤醒请求,调理；与系统参考地同域
 B31,H：厂家腔号未确认,ESTOP_SENSE,检测,独立辅助 NC,ESTOP_RETURN
 B32,H：厂家腔号未确认,ESTOP_RETURN,检测回流,独立辅助 NC,不加载 VCU 主链
-B33,H：厂家腔号未确认,LOCK_SENSE,检测,锁干接点,仅检测电流
-B34,H：厂家腔号未确认,LOCK_SENSE_RETURN,检测回流,锁干接点,非锁功率负线
+B33,H：厂家腔号未确认,LOCK_SENSE,检测,SM60E 白线1,反馈电气 H；限流辨识
+B34,H：厂家腔号未确认,LOCK_SENSE_RETURN,检测回流,SM60E 白线2,非锁功率负线
 B35,H：厂家腔号未确认,RESERVED,不接,空腔堵头,禁止私接电源

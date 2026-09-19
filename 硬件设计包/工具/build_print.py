@@ -207,7 +207,7 @@ doc.save(docx_path)
 reader=PdfReader(str(pdf_path))
 page_texts=[p.extract_text() or '' for p in reader.pages]
 text='\n'.join(page_texts)
-required=['MAX14830','MC33926','TPSM53603','TCAN1044AV','128','100','35P','T26','H16','SHA256','HOLD_VERIFY_REF']
+required=['MAX14830','MC33926','TPSM53603','TCAN1044AV','MSSD-100EMA','非 CANopen','SM60E','128','100','35P','T26','H16','SHA256','HOLD_VERIFY_REF']
 for word in required: assert word in text,('PDF missing',word)
 assert all(len(t.strip())>15 for t in page_texts),'Unexpected blank PDF page'
 assert '禁止直接投板' not in text or len(reader.pages)>10
