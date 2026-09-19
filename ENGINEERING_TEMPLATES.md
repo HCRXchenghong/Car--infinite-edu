@@ -29,6 +29,7 @@
 | EG800Z 电源输入侧 | 12V | TBD | TBD | TBD | TBD | 常电 | TBD | 板内 | TBD |
 | VCU 逻辑 | 12V | TBD | TBD | TBD | 100% | 常电 | TBD | 板内 | TBD |
 | VCU 5V_SENSOR 分组 | 5V | TBD | TBD | TBD | TBD | TBD | eFuse/限流高边 | TBD | TBD |
+| DM-J10010L-2EC ×4 转向 | 24～48V | DC 母线值待测；23.5A 是额定相电流 | DC 母线峰值待测；95A 是峰值相电流 | TBD | 按转向工况 | 四轴同时转向/堵转边界 | 每支路独立熔断+受控接触器 | XT30/线径待厂家确认 | S10/S16 + 台架波形 |
 
 校核结果至少包含：外部 DCDC 余量、连接器每针降额、并联针电流均衡、PCB 压降/温升、支路保护动作和最坏环境温度。
 
@@ -50,8 +51,8 @@ Pinmap 放行时同时附上时钟树、DMA 通道表、中断优先级表和封
 | 总线 | 节点 | 拓扑/顺序 | 总长 | 最大 stub | 仲裁/数据速率 | 终端位置 | 参考地/屏蔽 | 收发器 |
 |---|---|---|---:|---:|---|---|---|---|
 | CAN1_MAIN | 上位机/BCM/VCU | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
-| CAN2_STEER | VCU/4×转向轴 | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
-| CAN3_DRIVE | VCU/MSSD A/B | 500kbps 默认，最终冻结 | 两台唯一 ID，默认均为 1 不可直接并联 | 厂家 SDO-like 寄存器协议 | 经典 CAN 2.0A，11 位标准帧，非 CANopen | 通信超时/外部停机待厂家定义 | 待定义 | S08 + 抓包 |
+| CAN2_STEER | VCU/4×DM-J10010L-2EC | 线性/菊链，节点顺序待线束冻结 | TBD | TBD | 经典 CAN 1Mbps | VCU + 最远端电机；中间节点关闭拨码4 | 电机仅2线 CAN；非隔离地/共模 H | TCAN1044AV-Q1 + 电机内置收发器 |
+| CAN3_DRIVE | VCU/MSSD A/B | 线性/菊链，最终冻结 | TBD | TBD | 经典 CAN 500kbps 默认 | 仅两个物理端 | 参考地/屏蔽待定义 | TCAN1044AV-Q1 + MSSD 内置收发器 |
 
 ### 4.2 报文定义
 
@@ -60,6 +61,8 @@ Pinmap 放行时同时附上时钟树、DMA 通道表、中断优先级表和封
 | ChassisCommand | TBD | FD | TBD | TBD | TBD | 当前控制源 | VCU | 是 | 是 | 目标清零/停车 |
 | VCUStatus | TBD | FD | TBD | TBD | TBD | VCU | 上位机/BCM | 是 | 是 | 状态未知 |
 | BCMCommand | TBD | FD | TBD | TBD | TBD | 上位机/VCU | BCM | 是 | 是 | 输出安全默认 |
+| SteerPositionVelocity | `0x100+ESC_ID` | 经典 | 8 | 初始 10ms，实测冻结 | TBD | VCU | 单台 DM-J10010L | 无 | 无 | 停发后依 TIMEOUT 失能；TIMEOUT 单位/默认 H |
+| SteerFeedback | 每台唯一 `MST_ID` | 经典 | 8 | 厂家触发规则/实测 | TBD | 单台 DM-J10010L | VCU | 无 | 无 | 状态非使能、重复 ID 或超时即退出正常闭环 |
 
 每个信号还必须定义字节序、位位置、单位、比例、偏移、物理范围、无效值、滚动计数器、版本兼容和启动阶段行为。
 

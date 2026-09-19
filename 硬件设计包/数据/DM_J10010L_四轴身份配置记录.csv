@@ -1,0 +1,5 @@
+﻿逻辑轴,实物SN,ESC_ID,MST_ID,CAN速率,CTRL_MODE,固件版本,存储后重启读回,配置/复核/日期
+STEER_FL,,,,1Mbps/代码4,,,,
+STEER_FR,,,,1Mbps/代码4,,,,
+STEER_RL,,,,1Mbps/代码4,,,,
+STEER_RR,,,,1Mbps/代码4,,,,

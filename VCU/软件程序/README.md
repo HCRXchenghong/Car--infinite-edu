@@ -5,7 +5,7 @@
 ## 建立工程前的入口条件
 
 - STM32G474 完整 Pinmap、时钟树、DMA/中断优先级和安全相关 GPIO 默认态已冻结；
-- 三条 CAN、MSSD 厂家自定义 CAN、BMS、超声波、ToF、达妙电机和 nRF52840 主机协议已有受版本控制的协议文件；MSSD 不按 CANopen/CiA 402 实现；
+- 三条 CAN、MSSD 厂家自定义 CAN、BMS、超声波、ToF、达妙电机和 nRF52840 主机协议已有受版本控制的协议文件；当前已新增 [DM-J10010L-2EC CAN 实现输入](protocols/DM_J10010L_2EC_CAN.md)，但其中厂家缺项/矛盾尚未关闭；MSSD 不按 CANopen/CiA 402 实现；
 - 上位机与无线遥控器的唯一控制权仲裁、武装/死手、超时和模式切换已冻结；
 - 四个驱动轴和四个转向轴的硬件安全路径及故障反馈已完成原理图审查；
 - 坐标系、单位、四轮映射、参数范围和标定流程已定义。
@@ -18,7 +18,7 @@ VCU/软件程序/
 ├── README.md
 ├── app/             状态机、控制权、运动学、故障策略
 ├── services/        通信管理、参数、诊断、日志、看门狗监督
-├── protocols/       CAN FD、MSSD SDO-like 自定义 CAN、BMS、传感器、无线协议
+├── protocols/       CAN FD、DM-J10010L、MSSD SDO-like 自定义 CAN、BMS、传感器、无线协议
 ├── drivers/         FDCAN、SPI、MAX14830、UART、GPIO、Flash
 ├── bsp/             板级 Pinmap、时钟、电源和安全 I/O
 ├── bootloader/      镜像校验、版本、断电恢复和回滚

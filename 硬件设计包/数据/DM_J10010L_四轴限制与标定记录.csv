@@ -1,0 +1,5 @@
+﻿逻辑轴,PMAX,VMAX,TMAX,TIMEOUT及单位,零位rad,正方向,机械/软件限位,终端拨码,配置/复核/日期
+STEER_FL,,,,,,,,,
+STEER_FR,,,,,,,,,
+STEER_RL,,,,,,,,,
+STEER_RR,,,,,,,,,

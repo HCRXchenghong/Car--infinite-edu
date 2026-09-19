@@ -1,6 +1,6 @@
 {
   "status": "WORKBOOK_EXPORTED_NOT_HARDWARE_VALIDATION",
-  "pages": 40,
+  "pages": 43,
   "sections": [
     {
       "title": "VCU MCU 全部实体脚",
@@ -31,6 +31,18 @@
       "rows": 24
     },
     {
+      "title": "DM-J10010L-2EC CAN 帧与字节序",
+      "rows": 8
+    },
+    {
+      "title": "DM-J10010L-2EC 四轴身份配置",
+      "rows": 4
+    },
+    {
+      "title": "DM-J10010L-2EC 四轴限制与标定",
+      "rows": 4
+    },
+    {
       "title": "BCM 35P 逻辑接口——非厂家腔号",
       "rows": 35
     },
@@ -40,6 +52,6 @@
     }
   ],
   "file": "逐焊盘与外围连接_完整作业册_HW-R1.pdf",
-  "bytes": 323191,
-  "sha256": "1ef93596d823a698cda0422f6cb53c246364c1a91be5e68b4b628228ded99743"
+  "bytes": 342617,
+  "sha256": "f4bde16cf9b4c35a4a790e62b051ce1d55212c179f42a589f6b30309e6a136f0"
 }

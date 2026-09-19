@@ -1,0 +1,9 @@
+﻿功能,标准帧ID,DLC,数据,边界/待确认
+参数读,0x7FF,8,D0/D1 目标 ESC_ID 小端；D2=0x33；D3=RID,响应 ID=MST_ID；D4～D7 数据小端
+参数写,0x7FF,8,D0/D1 目标 ESC_ID；D2=0x55；D3=RID；D4～D7 数据,立即生效但掉电丢失；需显式存储
+参数存储,0x7FF,8,D0/D1 目标 ESC_ID；D2=0xAA,响应前4字节为目标ID、0xAA、0x01；禁止周期写
+MIT 控制,ESC_ID,8,P16/V12/Kp12/Kd12/T12 位拼接,PMAX/VMAX/TMAX 必须逐台读回；映射公式仍待正式协议
+位置速度,0x100+ESC_ID,8,p_des float rad + v_des float rad/s，均小端,首轮转向候选模式；切换前零速并读实际位置
+速度,0x200+ESC_ID,4?,v_des float rad/s，小端,手册仅列 D0～D3；DLC 用实物抓包确认
+力位混控,0x300+ESC_ID,8,P float；V uint16/100；I uint16/10000，均小端,99.74A 与参数表 95A 冲突，不用较大值放行
+状态反馈,MST_ID,8,D0 ID/ERR；POS16、VEL12、T12、MOS温度、线圈温度,D0 的低8位ID与 ERR<<4 描述互相覆盖，厂家澄清前不得猜解

@@ -195,6 +195,7 @@ part('VCU','MAX晶体',3,'1.8432MHz；CL/ESR 待定','每芯片独立时钟','�
 part('VCU','U501',1,'带 U.FL 的 nRF52840 模块','无线','H：具体型号/脚位')
 part('VCU','U710～U721',12,'带限流/关断/故障的 5V 支路器件','端口保护','H：具体型号/限流值')
 part('VCU','外部UART物理层',13,'12传感器+BMS，TTL转换/差分/隔离按设备','电平/保护','H：实际设备规格')
+part('VCU外部','STEER_FL/FR/RL/RR',4,'DM-J10010L-2EC','一体化转向减速电机','S10 参数/CAN；S11～S16 机械与曲线；硬件 STO/使能、总线地和实车能力 H')
 part('VCU外部','DRIVE_A/DRIVE_B',2,'MSSD-100EMA_2EC_N','一拖二驱动控制器','S07 电气/尺寸；S08 为自定义经典 CAN，非 CANopen；端子/安全 H')
 part('BCM','K1～K8',8,'12V 线圈、经 DC 负载核验的继电器','输出','H：线圈/触点/封装')
 part('BCM','Q901～Q908',8,'VGS=3.3V 有保证的 N-MOS','继电器线圈低边','H：MPN/脚位/功耗')
@@ -213,6 +214,29 @@ part('两板','其余电阻/电容/缓冲/接口/连接器','依最终 CAD 统�
 write_csv('BOM候选与缺项_不可直接采购.csv',['板','位号/组','数量','候选规格','用途','证据/状态'],bom)
 table('候选 BOM 与缺项——不是生产采购 BOM',['板','位号/组','数','候选规格','用途','状态'],bom)
 
+steer_frames=[
+ ('参数读','0x7FF','8','D0/D1 目标 ESC_ID 小端；D2=0x33；D3=RID','响应 ID=MST_ID；D4～D7 数据小端'),
+ ('参数写','0x7FF','8','D0/D1 目标 ESC_ID；D2=0x55；D3=RID；D4～D7 数据','立即生效但掉电丢失；需显式存储'),
+ ('参数存储','0x7FF','8','D0/D1 目标 ESC_ID；D2=0xAA','响应前4字节为目标ID、0xAA、0x01；禁止周期写'),
+ ('MIT 控制','ESC_ID','8','P16/V12/Kp12/Kd12/T12 位拼接','PMAX/VMAX/TMAX 必须逐台读回；映射公式仍待正式协议'),
+ ('位置速度','0x100+ESC_ID','8','p_des float rad + v_des float rad/s，均小端','首轮转向候选模式；切换前零速并读实际位置'),
+ ('速度','0x200+ESC_ID','4?','v_des float rad/s，小端','手册仅列 D0～D3；DLC 用实物抓包确认'),
+ ('力位混控','0x300+ESC_ID','8','P float；V uint16/100；I uint16/10000，均小端','99.74A 与参数表 95A 冲突，不用较大值放行'),
+ ('状态反馈','MST_ID','8','D0 ID/ERR；POS16、VEL12、T12、MOS温度、线圈温度','D0 的低8位ID与 ERR<<4 描述互相覆盖，厂家澄清前不得猜解'),
+]
+write_csv('DM_J10010L_CAN帧与字节序.csv',['功能','标准帧ID','DLC','数据','边界/待确认'],steer_frames)
+table('DM-J10010L-2EC CAN 帧与字节序',['功能','标准帧ID','DLC','数据','边界/待确认'],steer_frames)
+
+steer_identity=[]
+steer_limits=[]
+for axis in ['STEER_FL','STEER_FR','STEER_RL','STEER_RR']:
+    steer_identity.append([axis,'','','','1Mbps/代码4','','','',''])
+    steer_limits.append([axis,'','','','','','','','',''])
+write_csv('DM_J10010L_四轴身份配置记录.csv',['逻辑轴','实物SN','ESC_ID','MST_ID','CAN速率','CTRL_MODE','固件版本','存储后重启读回','配置/复核/日期'],steer_identity)
+table('DM-J10010L-2EC 四轴身份配置记录',['轴','实物SN','ESC_ID','MST_ID','CAN速率','模式','固件版本','读回','签名'],[[r[0].replace('STEER_',''),'________','____','____',r[4],'____','____','____','________'] for r in steer_identity])
+write_csv('DM_J10010L_四轴限制与标定记录.csv',['逻辑轴','PMAX','VMAX','TMAX','TIMEOUT及单位','零位rad','正方向','机械/软件限位','终端拨码','配置/复核/日期'],steer_limits)
+table('DM-J10010L-2EC 四轴限制与标定记录',['轴','PMAX','VMAX','TMAX','TIMEOUT','零位','方向','限位','终端','签名'],[[r[0].replace('STEER_',''),'____','____','____','____','____','____','____','____','________'] for r in steer_limits])
+
 test_titles=['文件与实物一致性','断电电阻与连续性','分阶段首次上电','电源轨与纹波','默认关闭与下载','复位欠压再使能','Buck 负载与热','传感器端口隔离','通信外设反灌','CAN 物理层','MAX/12 UART','BMS/无线','继电器/K1','锁与反馈','推杆方向与限位','推杆带载/堵转/再生','4G 电源维护','SHT 热偏差','急停断线短线','看门狗与锁存','八轴/抱闸/接触器','断地电流路径','同时负载/外壳热','线束机械环境','干扰预检回归','最终放行']
 records=[[f'T{i:02d}',title,'','','','','',''] for i,title in enumerate(test_titles,1)]
 write_csv('检验记录.csv',['编号','项目','板号/版本/条件','实测值','限值依据','证据编号','结论','测试/复核/日期'],records)
@@ -228,6 +252,13 @@ sources=[
  ('S07','MSSD-100EMA_2EC_N_彩页.pdf','MSEAG MSSD-100EMA_2EC_N 产品彩页','用户提供的商户资料原件','3 页图片型资料；核验输入/输出电流、功能、尺寸与接口分组，不含端子针号和安全手册'),
  ('S08','MSSD-2EC_CAN协议_V1.0.pdf','MSSD-2EC 系列 CAN 通讯协议及寄存器说明书 V1.0','用户提供的商户资料原件','明确为 11 位标准帧的厂家自定义经典 CAN，暂不支持 CANopen；完整寄存器表仍依赖未取得的 RS485 手册'),
  ('S09','SM60E规格书_20260611.pdf','SM60E 电磁锁规格书，图号 SHMi20260611SM60E','用户提供的商户资料原件','图片型机械图；核验 12V/24V 电气、60kg 标称最大吸力、红黑功率和双白反馈；反馈电气类型未定义'),
+ ('S10','DM-J10010L-2EC/说明书/DM-J10010L-2EC减速电机说明书V1.1.pdf','达妙 DM-J10010L-2EC 减速电机使用说明书 V1.1','用户提供的 DM-J10010L-2EC 资料目录','13 页；核验 24～48V、主要电机参数、经典 CAN 标准帧、默认 1Mbps、控制模式和寄存器；使能/失能、D0 位定义、TIMEOUT 和硬件安全仍缺失/矛盾'),
+ ('S11','DM-J10010L-2EC/2D图纸/dm-l10010.pdf','DM-J10010L 2D 图纸 A','用户提供的 DM-J10010L-2EC 资料目录','单页图片型尺寸图；约 Ø120×53mm、安装/输出孔系；无明确受控修订关系'),
+ ('S12','DM-J10010L-2EC/2D图纸/dm-j10010l-2ec-2D尺寸图.pdf','DM-J10010L-2EC 2D 图纸 B','用户提供的 DM-J10010L-2EC 资料目录','单页图片型尺寸图；与 S11 图面高度相似但摘要不同，投产前需厂家确认主版本'),
+ ('S13','DM-J10010L-2EC/3D模型/dm-j10010l-0730_1.STEP','DM-J10010L STEP 模型','用户提供的 DM-J10010L-2EC 资料目录','STEP AP203，文件元数据显示 2024-07-30/SolidWorks 2022；只作布置候选，需与实物和 V1.1 图纸复核'),
+ ('S14','DM-J10010L-2EC/3D模型/dm-j10010l-240726_1.SLDPRT','DM-J10010L SolidWorks 零件模型','用户提供的 DM-J10010L-2EC 资料目录','原始机械零件文件；未在本环境中验证 SolidWorks 特征/版本兼容性'),
+ ('S15','DM-J10010L-2EC/3D模型/dm-j10010l-240726.sldasm.7z','DM-J10010L SolidWorks 装配压缩包','用户提供的 DM-J10010L-2EC 资料目录','原始压缩装配资料；发布/制造前在受支持 CAD 中解压并检查引用完整性'),
+ ('S16','DM-J10010L-2EC/测试数据/性能曲线/48V 100RPM 10010L电机性能曲线图.png','DM-J10010L 48V/100RPM 性能曲线','用户提供的 DM-J10010L-2EC 资料目录','曲线图片约覆盖 0～55N·m；无原始数据、试验条件、持续时间和不确定度，不能外推 120N·m 峰值或寿命'),
 ]
 manifest=[]
 APP.extend(['## 存档资料索引与 SHA256', '', '资料取得日期：2026-09-19。引用页码指原 PDF 印刷页码，不是本手册页码。下载成功不等于所有参数均已核验；证据范围见每章。', ''])
@@ -239,6 +270,6 @@ for sid,filename,title,url,note in sources:
     APP.extend([f'### {sid} {title}', '', f'本地文件：资料/{filename}', '', f'来源：{url}', '', f'范围：{note}', '', f'SHA256：{digest}', ''])
 write_csv('资料来源与SHA256.csv',['ID','文件','名称','来源URL','SHA256','说明'],manifest)
 (ROOT/'10_数据附录.md').write_text('\n'.join(APP)+'\n',encoding='utf-8')
-result={'status':'DOCUMENT_DATA_CHECKS_PASSED_NOT_HARDWARE_VALIDATION','checks':checks,'open_items':['MCU 电气手册与 G474 43/44 脚','GPIO AF 数字/时钟/启动','实际 CAD ERC/DRC','连接器厂家腔号','MSSD 端子/RS485 完整寄存器表/安全输入','推杆完整型号与电流/机械参数','SM60E 反馈电气与机械到位含义','安全电路器件和八轴安全路径','4G/无线/传感器/保护完整型号','实物测试全部未执行']}
+result={'status':'DOCUMENT_DATA_CHECKS_PASSED_NOT_HARDWARE_VALIDATION','checks':checks,'open_items':['MCU 电气手册与 G474 43/44 脚','GPIO AF 数字/时钟/启动','实际 CAD ERC/DRC','连接器厂家腔号','DM-J10010L 完整使能/失能协议、TIMEOUT/D0 定义、硬件安全和实物参数','MSSD 端子/RS485 完整寄存器表/安全输入','推杆完整型号与电流/机械参数','SM60E 反馈电气与机械到位含义','安全电路器件和八轴安全路径','4G/无线/传感器/保护完整型号','实物测试全部未执行']}
 (DATA/'校验结果.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print(json.dumps(result,ensure_ascii=False,indent=2))

@@ -1,6 +1,6 @@
 {
   "status": "EXPORT_CONTENT_CHECK_PASSED_NOT_HARDWARE_VALIDATION",
-  "pages": 57,
+  "pages": 61,
   "source_files": [
     "00_使用说明与放行边界.md",
     "01_系统电源与安全接线.md",
@@ -15,12 +15,14 @@
     "10_数据附录.md",
     "11_逐网连接勾选清单.md"
   ],
-  "tables": 42,
+  "tables": 46,
   "required_terms_checked": [
     "MAX14830",
     "MC33926",
     "TPSM53603",
     "TCAN1044AV",
+    "DM-J10010L-2EC",
+    "默认 1Mbps",
     "MSSD-100EMA",
     "非 CANopen",
     "SM60E",
@@ -35,13 +37,13 @@
   "artifacts": [
     {
       "file": "四轮四转底盘_硬件实施与检验手册_HW-R1.pdf",
-      "bytes": 653481,
-      "sha256": "4f76f37c3b01c7f2ea4955fde5a89d9d33b7c9278c8857f9686cc4175742f961"
+      "bytes": 682299,
+      "sha256": "f87cd4c9e1d4b42190984fbda3890214ac13c6aeb553ea4678ff38eca6b3c3df"
     },
     {
       "file": "四轮四转底盘_硬件实施与检验手册_HW-R1.docx",
-      "bytes": 111440,
-      "sha256": "d622500381464e96b58c2955612c1b1e1979460209998e280c235a88d8a3e7ae"
+      "bytes": 119583,
+      "sha256": "2c629783ccd41c4e9578f8b4347b5f4ba3ddfc3f05d48b690fe01b6946d2dc83"
     }
   ],
   "visual_review": "Required: rendered-page review is separate from text/content checks."

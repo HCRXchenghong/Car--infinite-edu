@@ -30,9 +30,10 @@ conn=read_csv('BCM_35P逻辑分配_非厂家腔号.csv')
 assert len(conn)==35 and len({r['逻辑槽位'] for r in conn})==35
 assert all(r['厂家腔号'].startswith('H') for r in conn)
 for r in conn: assert normalize(r['网络']) in full,r
-for src in read_csv('资料来源与SHA256.csv'):
+sources=read_csv('资料来源与SHA256.csv')
+for src in sources:
     assert hashlib.sha256((ROOT/'资料'/src['文件']).read_bytes()).hexdigest()==src['SHA256'],src['文件']
-checks.append('35P 逻辑分配完整，厂家腔号未伪装成已确认；9 份存档资料 SHA256 匹配。')
+checks.append(f'35P 逻辑分配完整，厂家腔号未伪装成已确认；{len(sources)} 份存档资料 SHA256 匹配。')
 ledger=read_csv('已核验芯片_全焊盘连接.csv')
 assert len(ledger)==310
 assert len({(r['板'],r['器件'],r['焊盘']) for r in ledger})==310
@@ -55,9 +56,9 @@ for filename,expected in [('STM32G474Q_B-C-E_Tx.xml','d9c52b4725451407ec54c87773
     blob=hashlib.sha1(b'blob '+str(len(content)).encode()+b'\0'+content).hexdigest()
     assert blob==expected,(filename,blob)
 checks.append('两份 MCU XML 的 Git blob SHA1 与官方 API 固定版本匹配。')
-for term in ['MSSD-100EMA_2EC_N','暂不支持 CANopen','SM60E','92mA','双白']:
+for term in ['MSSD-100EMA_2EC_N','暂不支持 CANopen','SM60E','92mA','双白','DM-J10010L-2EC','默认 1Mbps','ERR<<4 会发生位重叠']:
     assert normalize(term) in full,('new supplier evidence missing in PDF',term)
-checks.append('MSSD 自定义经典 CAN（非 CANopen）、SM60E 12V/92mA 与双白反馈边界已进入 PDF。')
+checks.append('MSSD 自定义经典 CAN、SM60E 反馈边界及 DM-J10010L-2EC 经典 CAN/协议矛盾已进入 PDF。')
 workbook=PdfReader(str(ROOT/'打印版/逐焊盘与外围连接_完整作业册_HW-R1.pdf'))
 work_text=normalize('\n'.join(p.extract_text() or '' for p in workbook.pages))
 for r in ledger:
